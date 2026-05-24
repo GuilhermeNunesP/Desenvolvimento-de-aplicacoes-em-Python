@@ -1,0 +1,55 @@
+class Task:
+    def __init__(self, titulo, descricao):
+        self.titulo = titulo 
+        self.descricao = descricao
+        self.concluido = False
+    def mconcluida(self):
+        self.concluido = True
+    def __str__(self):
+        stats = "concluido" if self.concluido else "pendente"
+        return f"Titulo: {self.titulo} descrição {self.descricao} stats: {stats}"
+    
+class TaskManager:
+    def __init__(self):
+        self.tarefas = []
+    
+    def adtarefa(self, titulo, descricao):
+        nova_task = Task(titulo, descricao)
+        self.tarefas.append(nova_task)
+        print(f"Tarefa {titulo} adcionada  com sucesso!")
+
+    def listtarefas(self):
+        if not self.tarefas:
+            print("Nenhuma tarefa")
+            return
+        
+        for index, tarefa in enumerate(self.tarefas, 1):
+            print(f"{index} {tarefa}")
+
+    def contarefas(self, indice):
+            if 1 <= indice <= len(self.tarefas):
+                tarefa = self.tarefas[indice - 1]
+                tarefa.mconcluida()
+                print(f"Tarefa {tarefa.titulo} marcada como concluida")
+            else:
+                print("Numero de tarefa invalido")
+            
+    def remtarefas(self, indice):
+        if 1 <= indice <= len(self.tarefas):
+            tarefa_removida = self.tarefas.pop(indice - 1)
+            print(f"Tarefa {tarefa_removida.titulo} removida")
+        else:
+            print("Numero de tarefa invalido")
+
+if __name__ == "__main__":
+    gerenciador = TaskManager()
+    gerenciador.adtarefa("Estudar","Aprender Python")
+    gerenciador.adtarefa("Estudar","Aprender Computação em Cloud")
+    gerenciador.adtarefa("Praticar","Fazer codigos em Python")
+
+    gerenciador.listtarefas()
+    gerenciador.contarefas(1)
+    gerenciador.remtarefas(2)
+
+    print("Atualizado")
+    gerenciador.listtarefas()
