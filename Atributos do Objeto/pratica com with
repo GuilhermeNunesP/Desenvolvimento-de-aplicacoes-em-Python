@@ -1,0 +1,55 @@
+def escreve(caminho_arquivo:str , modo:str , texto:list, texto2:list)-> None:
+    with open(caminho_arquivo, modo) as arquivo:
+        arquivo.write(texto[0])
+        arquivo.write(texto[1]
+        linhas = texto2
+        arquivo.writelines(linhas)
+if __name__ = "__main__":
+caminho_arquivo = "aula/escrevendo.txt"
+lista_texto = ["Primeira Linha \n"," está é a Segunda Linha \n"]
+lista_texto2 = ["Está é a primeira lista \n"," Está é a segunda linha em uma lista"]
+escreve(caminho_arquivo, "w", lista_texto, lista_texto2)
+
+# Criar um arquivo de exemplo e escrever um conteudo nele
+with open("Exemplo.txt", "w", encoding="utf-8") as f:
+f.write("Exemplo de uso dos metodos seek() e tell() em Python.")
+
+# Abre o arquivo para leitura e demostra o uso de seek() e tell()
+with open("exemplo.txt", "r", encoding="utf-8") as f:
+
+# Posicao Inicial do cursor
+print("Posicão incial:", f.tell())
+
+# Le os primeiros 10 caracteres
+conteudo = f.read(10)
+print("Conteudo lido:", conteudo)
+print("Posição do cursor após ler 10 caracteres:", f.tell())
+
+# Volta para o inicio do arquivo
+f.seek(0,0) # whence=0: inicio do arquivo
+print("Posição do cursor após seek(0,0):", f.tell()))
+
+# Avanca 15 caracteres a partir do inicio  do arquivo
+f.seek(15, 0)
+print("Posição do cursor após seek(15,0):", f.tell())
+parte = f.read(5)
+print("Conteudo lido apos o seek(15, 0):", parte)
+
+# Retrocede 5 caracteres a partir da posicao atual usando seek absoluto:
+pos_atual = f.tell()
+f.seek(pos_atual - 5,0) # Calcula a nova posisao de forma absoluta
+print("Posição do cursor após retroceder 5 caracteres:", f.tell())
+parte2 = f.read(5)
+print("Conteudo lido após retroceder 5 caracteres:", parte2)
+
+# Move para o fim do arquivo.
+f.seek(0, 2) # whence=2: fim do arquivo
+print("Posição do cursor no fim do arquivo:", f.tell())
+
+
+
+
+
+
+
+
