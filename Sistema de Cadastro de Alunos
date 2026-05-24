@@ -1,0 +1,15 @@
+from dataclasses import dataclass
+@dataclass
+class aluno:
+    nome: str
+    idade: int
+    notas: list
+    def calcular_media(self):
+        return sum(self.notas) / len(self.notas)
+    
+if __name__ == "__main__":
+    aluno1 = aluno("Guilherme", 39, [9.5, 8.7, 7.2])
+    aluno2 = aluno("João", 41, [9.8, 6.0, 8.1])
+    lista_alunos = [aluno1, aluno2]
+    for aluno in lista_alunos:
+        print(f"Nome: {aluno.nome}, media: {aluno.calcular_media():.2f}")
