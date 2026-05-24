@@ -1,0 +1,19 @@
+def esc(caminho:str, modo:str) -> None:
+    arquivo = open(caminho, modo)
+    arquivo.write("Guilherme")
+    arquivo.writelines(["\nCaroline", "\nVanessa", "\nCristina"])
+    arquivo.close()
+
+def lendo(caminho_arquivo: str, modo:str) -> list:
+    arquivo = open(caminho_arquivo ,modo)
+    linhas = arquivo.readlines()
+    arquivo.close()
+    return linhas
+
+if __name__ == "__main__":
+    caminho_arquivo = "aula03/manipulando_arquivo/nomes2.txt"
+    modo = "r", "w"
+    esc(caminho_arquivo, modo[1])
+    linhas = lendo(caminho_arquivo, modo[0])
+    for i, linha in enumerate(linhas, start=1):
+        print(f"linha {i}: {linha}")
