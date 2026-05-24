@@ -1,0 +1,9 @@
+arquivo = open("Rad/aula03/manipulando_arquivo/dados.txt")
+print("Nome arquivo:", arquivo.name)
+print("Tamanho arquivo", arquivo.tell())
+print("Modo arquivo:", arquivo.mode)
+print("arquivo fechado", arquivo.closed)
+
+arquivo.close()
+
+print("Arquivo fechado", arquivo.closed)
