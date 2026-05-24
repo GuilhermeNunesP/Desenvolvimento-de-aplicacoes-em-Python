@@ -1,0 +1,10 @@
+def linhas(caminho_arquivo: str, modo:str):
+    arquivo = open(caminho_arquivo, modo)
+    linhas = arquivo.readlines()
+    arquivo.close()
+    return linhas
+
+if __name__ == "__main__":
+    caminho_arquivo = "Rad/aula03/manipulando_arquivo/dados.txt"
+    for i, linha in enumerate(linhas, start=1):
+        print(f"Linha {1}: {linhas}")
