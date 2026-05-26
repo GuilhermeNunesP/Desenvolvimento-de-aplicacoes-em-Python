@@ -1,0 +1,5 @@
+texto = "Nossa aula manipulando string"
+
+print(''.join(texto))
+print(texto.split())
+print(''.join(texto.split()))
