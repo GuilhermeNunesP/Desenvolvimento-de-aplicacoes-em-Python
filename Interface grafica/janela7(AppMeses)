@@ -1,0 +1,25 @@
+import tkinter as tk
+
+
+
+
+
+class AppMeses:
+    def __init__(self, root):
+        self.root = root
+        self.root.geometry('250x120')
+        self.root.title('ExemploCombobox')
+        tk.Label(self.root, text="Selecione um mes: ").pack(pady=5)
+        self.meses = ["Janeiro","Fvereiro","Março"]
+        self.comno = tk.Combobox(self.root, value=self.meses, state="readonly")
+        self.combo.pack(pady=5)
+        self.combo.currente(0)
+        self.combo.bind("<<ComboboxSelected>>" , self.selectionar_mes)
+
+    def selecionar_mes(self, event)
+        selecao = self.combo.get()
+        print(f"Mes escolhido: {selecao}")
+
+root = tk.Tk()
+AppMeses(root)
+root.mainloop()
