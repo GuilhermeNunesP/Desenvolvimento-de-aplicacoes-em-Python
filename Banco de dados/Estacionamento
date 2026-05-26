@@ -43,4 +43,38 @@ class bancodedados:
                 cursor.execute("""CREATE TABLE IF NOT EXISTS veiculo(placa TEXT PRIMARY KEY, cor TEXT NOT NULL, cpf_proprietario INTERGER, id_marca INTEGER, FOREIGN KEY(cpf_prprietario) REFERENCES pessoa(cpf), FOREIGN KEY(id_marca) REFERENCES marca(id)""")
                 self.conn.commit()
             except sqlite3.Error as e:
-                print("Erro ao criar tabela {e}")   
+                print("Erro ao criar tabela {e}")  
+
+import logging
+
+#Configuraçao basica do logger
+logging.basicConfig(
+    filename="app.log",
+    level="logging.INFO",
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+def log_info(message):
+    logging.info(message)
+
+def log_error(message):
+    logging.error(message)
+
+def inserir_pessoa(self, pessoa: pessoa):
+    if self.conn:
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute("INSERT INTO pessoa VALUES (?,?,?,?)",
+                           (pessoa.cpf, pessoa.nome, pessoa.nascimento, pessoa.oculos),)
+            self.conn.commit()
+        except sqlite3.Error as e:
+            print(f"Erro ao inserir pessoa: {e}")
+
+def inserir_veiculo(self, veiculo: veiculo):
+    if self.conn:
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute("INSERT INTO veiculo VALUES (?,?,?,?)",
+                           (veiculo.placa, veiculo.cor, veiculo.proprietario.cpf, veiculo.marca.id),)
+            self.conn.commit()
+        except sqlite3.Error as e:
+            print(f"Erro ao inserir veiculo: {e}")
