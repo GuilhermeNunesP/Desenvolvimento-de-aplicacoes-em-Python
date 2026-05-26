@@ -1,0 +1,17 @@
+def criar_registro(arquivo):
+    with open(arquivo, "w") as file:
+        file.write("Registro de notas de alunos")
+
+def adicionar_nota(arquivo, aluno, nota):
+    with open(arquivo, "a") as file:
+        file.write(f"Aluno: {aluno}\n")
+        file.write(f"Nota: {nota}\n")
+    
+
+
+
+if __name__ == "__main__":
+    registro_de_notas = "registro_notas.txt"
+    criar_registro(registro_de_notas)
+    adicionar_nota(registro_de_notas, "Raphael", 8.5)
+    adicionar_nota(registro_de_notas, "Guilherme", 9.0)
