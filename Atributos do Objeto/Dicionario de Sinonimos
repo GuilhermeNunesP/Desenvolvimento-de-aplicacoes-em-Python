@@ -1,0 +1,59 @@
+from typing import List, Optional
+
+class DicionariodeSinonimos:
+        """Encapsula o armazenamento e protege os dados de alterações externas diretas"""
+
+        def __init__(self)-> None:
+            # O sublinhado (_) indica que este atributo é privado(Encapsulado)
+            # As chaves são strings e os valores são listas de strings
+            self.dicionario: dict[str, list[str]] = {}
+
+        def adicionar_palavra(self, palavra: str, sinonimos: list[str]) -> None:
+            """Se a palavra já existir, os nomes sinonimos são mesclados sem duplicadas"""
+            # Normalizacao: remove espaços extras e deixa tudo minisculo
+
+            palavra_chave = palavra.strip().lower()
+            sinonimos_limpos = [s.strip().lower() for s in sinonimos]
+            if palavra_chave in self.dicionario:
+                # Junta os sinonimos existente com os novos
+                todos_sinonimos = self.dicionario[palavra_chave] + sinonimos_limpos
+                # Usa set() para remover duplicadas e converte de volta para lista
+                self.dicionario[palavra_chave] = list(set(todos_sinonimos))
+                print(f"[Atualizaçao]  Sinonimos adicionais a palavra existente: {palavra_chave}")
+            else:
+                self.dicionario[palavra_chave] = list(set(sinonimos_limpos))
+                print(f"[Sucesso] Nova Palavra registrada: {palavra_chave}")
+        def remover_palavra(self, palavra:str)->None:
+            """Retorna True se removido com sucesso, False caso a palavr nao exista"""
+            palavra_chave = palavra.strip().lower()
+            if palavra_chave in self.dicionario:
+                del self.dicionario[palavra_chave]
+                print(f"[Sucesso] Palavra{palavra_chave} removida do dicionario")
+                return True
+            else:
+                print(f"[Erro] Falha ao remover: {palavra_chave} nao existe no dicionario")
+                return False
+            
+        def exibir_todos(self)->None:
+            print("\n Dicionario Completp")
+            if not self.dicionario:
+                print("Dicionario Vazio")
+            for palavra, sinonimos in self.dicionario.items():
+                print(f"- {palavra.capitalize()}: {', '.join(sinonimos)} ")
+                print("\n")
+
+if __name__ == "__main__":
+    # Iniciando o objeto
+        meu_dicionario = DicionariodeSinonimos()
+
+        meu_dicionario.adicionar_palavra("feliz",[" Alegre"," Contente","satisfeito"])
+        meu_dicionario.adicionar_palavra("rapido", ["veloz","agil","apressado"])
+
+        meu_dicionario.exibir_todos()
+        sinonimos_feliz = meu_dicionario.buscar_sinonimos("feliz")
+        sinonimos_triste = meu_dicionario.buscar_sinonimos("triste")
+
+        meu_dicionario.remover_palavra("rapido")
+        meu_dicionario.remover_palavra("inteligente")
+
+        meu_dicionario.exibir_todos
