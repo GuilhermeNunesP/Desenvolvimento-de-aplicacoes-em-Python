@@ -1,0 +1,58 @@
+import os 
+
+def obter_caminho_absoluto(nome_arquivo:str )-> None:
+    """Retorna o caminho absoluto do arquivo com base na localização deste script."""
+    diretorio_base = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(diretorio_base, nome_arquivo)
+
+def escrever_arquivo(caminho: str, conteudo:str )-> None:
+    """Cria ou sobrescreve um arquivo com o conteudo fornecido (Modo "w")"""
+    try:
+        with open(caminho, "w", encoding="utf-8") as arquivo:
+            arquivo.write(conteudo)
+        print(f"[Sucesso] Arquivo escrito em: {caminho}")
+    except Exception as e:
+        print(f"[Erro] Falha ao excever no arquivo: {e}")
+
+def adicionar_texto(caminho: str, conteudo:str )-> None:
+    """ Adiciona conteudo ao final de um arquivo existente (Modo "a")"""
+    try:
+        with open(caminho, "a", encoding="utf-8") as arquivo:
+            arquivo.write(conteudo)
+        print(f"[Sucesso] Texto adcionado ao arquivo")
+    except Exception as e:
+        print(f"[Erro] Falha ao adicionar texto: {e}")
+
+def ler_arquivo(caminho:str) -> None:
+    """Le e retorna todo o conteudo de um arquivo (Modo "r")"""
+    try:
+        with open(caminho, "r", encoding="utf-8") as arquivo:
+           conteudo = arquivo.read()
+           print("\n Conteudo do Arquivo")
+           print(conteudo)
+           print("\n")
+           return conteudo
+    except FileExistsError:
+        print(f"[Erro] o arquivo nao foi encontrado para leitura: {caminho}")
+    except Exception as e:
+        print(f"[Erro] Falha ap ler o arquivo: {e}")
+
+def apagar_arquivo(caminho: str)_> None:
+    """Remove o arquivo do sistema operaconal"""
+    try:
+        if os.path.exists(caminho):
+            os.remove(caminho)
+            print(f"[Sucesso] Arquivo apagado: {caminho}")
+        else:
+            print(f"[Avisa] o arquivo '{caminho}' nao existe para ser apagado")
+    except Exception as e:
+            print(f"[Erro] Falha ao apagar o arquivo: {e}")
+
+if __name__ == "__main__":
+    caminho_meu_arquivo = obter_caminho_absoluto("Exemplo_aula.txt")
+    escrever_arquivo(caminho_meu_arquivo, "Nossa aula\n")
+    ler_arquivo(caminho_meu_arquivo)
+    adicionar_texto(caminho_meu_arquivo, "Python, manipulaçao de arquivos")
+    ler_arquivo(caminho_meu_arquivo)
+    apagar_arquivo(caminho_meu_arquivo)
+    ler_arquivo(caminho_meu_arquivo)
