@@ -1,0 +1,8 @@
+from collections import namedtuple
+
+ponto = namedtuple("Ponto", ["X", "y"])
+
+meu_ponto = ponto(10, 20)
+
+print(meu_ponto.x)
+print(meu_ponto[1])
