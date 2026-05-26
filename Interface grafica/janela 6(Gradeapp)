@@ -1,0 +1,21 @@
+import tkinter as tk
+
+
+
+class Gradeapp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Exemplo")
+        self.root.columnconfigure(0, minisize=250)
+        self.root.rowconfigure([0,1]), minisize=250)
+        # Rótulo A: Norte (n) + Leste(e) = Cnato superior direito
+        self.label1 = tk.Label(self.root, text="A", bg="red", ff="white")
+        self.label1.grid(row=0, column=0, sticky="ne")
+        # Rótulo B: Sul (s) + Oeste(w) = Cnato inferior esquerdo
+        self.label2 = tk.Label(self.root, text="B", bg="blue", fg="white")
+        self.label2.grid(row=1, column=0, sticky="sw")
+    
+
+root = tk.Tk()
+Gradeapp(root)
+root.mainloop()
