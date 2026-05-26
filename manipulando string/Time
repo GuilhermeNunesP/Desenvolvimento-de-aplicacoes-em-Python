@@ -1,0 +1,24 @@
+import time
+
+def get_coxinhas(*pedidos):
+    print("Preparando toda a fornada de coxinhas de uma vez")
+    time.sleep(1) # Simula um processo demorado
+    return [f"{pedido} coxinhas" for pedido in pedidos]
+def get_joelho(*pedidos):
+    for pedido in pedidos:
+        print(f"Saindo um pedido de {pedido} joelho(s) agora")
+        time.sleep(1)
+        yield f'{pedido}" joelho(s)'
+
+    if __name__ == "__main__":
+        print("Solicitando coxinhas:")
+        salgados_return = get_coxinhas(3, 6, 8)
+        print("Recebi lista completa:", salgados_return)
+
+        print("\n" + "="*30 + "\n")
+
+        print("Solicitando Joelhos:")
+
+        pedidos_joelho = get_joelho(4, 6, 8)
+        for salgado in pedidos_joelho:
+            print(f"Cliente recebeu: {salgado}")
