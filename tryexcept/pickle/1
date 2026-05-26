@@ -1,0 +1,18 @@
+import pickle
+
+dados = {"Nome": "Raphael", "Idade": "41", "profissao": "Desenvolvedor"}
+
+try:
+       with open("dados.bin", "wb") as salva_binario:
+        pickle.dump(dados, salva_binario)
+        print("Dados salvos")
+except Exception as e:
+        print(f"Ocorreu um erro ao salvar {e}")  
+
+
+try:
+        with open("dados.bin", "rb") as carrega_binario:
+            dados_carregados = pickle.load(carrega_binario)
+        print("Dados Carregados")
+except Exception as e:
+        print(f"Ocorreu um erro ao carregar {e}")   
