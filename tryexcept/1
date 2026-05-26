@@ -1,0 +1,12 @@
+def divide(x,y):
+    try:
+        resultado = x / y
+    except ZeroDivisionError:
+        print("Opa, tentando dividir por zero?")
+    else:
+        print("Certa", resultado)
+    finally:
+        # Este bloco sempre sera executado independente de ocorrer erro ou nao
+    
+        divide(3,2)
+        divide(3,0)
