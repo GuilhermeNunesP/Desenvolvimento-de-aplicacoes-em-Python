@@ -1,0 +1,40 @@
+class contabancaria:
+    def __init__(self, titular:str, saldo_inicial, float=0):
+        self.titular = titular
+        self.saldoinicial = saldo_inicial
+
+    @property
+    def saldo(self):
+        """Getter para permitir consulta ao saldo sem permitir alteraçao direta"""
+        return self.__saldo
+
+        
+    def depositar(self, valor: float)-> None:
+        if valor > 0:
+            self.__saldo += valor
+            print(f"Deposito de R${valor:.2f} realizado")
+        else:
+            print("O valor do deposito deve ser positivo")
+    def sacar(self, valor: float)-> None:
+        if valor <= 0:
+            print("O valor do saque deve ser positivo")
+        elif valor > self.__saldo:
+            print(f"Saldo insuficiente. Saldo disponivel: R${self.__saldo:.2f}")
+        else:
+            self.__saldo -= valor 
+            print(f"Saque de R${valor:.2f} realizado")
+
+def __str__(self)->None:
+    """Representaçao em string do objeto """
+    return f"conta de {self.titular} - saldo atual: R${self.__saldo:.2f}"
+
+if __name__ == "__main__":
+   conta = contabancaria("Guilherme", 1000)
+   print(conta)
+
+   conta.depositar(500)
+   conta.sacar(2000)
+   conta.sacar(300)
+
+   print(f"Consulta via Property: R${conta.saldo:.2f}")
+   print(f"Consultar diretamente: R${conta.__saldo:.2f}")
