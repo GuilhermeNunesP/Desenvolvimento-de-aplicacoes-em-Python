@@ -1,0 +1,9 @@
+from collections import defaultdict
+
+estudantes_por_sala = defaultdict(list)
+
+estudantes_por_sala['b'].append("Guilherme")
+estudantes_por_sala['a'].append("Joao")
+estudantes_por_sala['b'].append("Raphael")
+
+print(dict(estudantes_por_sala))
