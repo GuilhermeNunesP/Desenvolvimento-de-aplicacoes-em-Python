@@ -1,0 +1,9 @@
+try:
+    f = open("Nomes.txt")
+    s = f.readline()
+    i = int(s.strip())
+except (IOError, ValueError):
+    print("Ocorreu  erro de E/S ou ValueError")
+except:
+    print("Erro inesperado")
+    raise
