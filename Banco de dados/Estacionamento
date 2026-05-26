@@ -1,0 +1,46 @@
+import os
+import sqlite3
+from pessoa import Pessoa
+from marca import Marca
+from veiculo import veiculo
+
+class bancodedados:
+    def __init__(self, nome_banco="banco.sqlite"):
+        self.nome_banco = os.path.join(os.path.dirname(__file__))
+        self.conn = None
+    def connectar(self):
+        try:
+            self.conn = sqlite3.connect(self.nome_banco)
+        except sqlite3.Error as e:
+            print(f"Erro ao conectar {e}")
+    def criar_tabelas(self):
+        self.criar_tabelas_pessoa()
+        self.criar_tabelas_marca()
+        self.criar_tabelas_veiculo()
+
+    def criar_tabela_pessoa(self):
+        if self.conn:
+            try:
+                cursor = self.conn.cursor()
+                cursor.execute("""CREATE TABLE IF NOT EXISTS pessoa(cpf INTEGER PRIMARY KEY, nome TEXT NOT NULL, nascimento DATE, oculos BOOLEAN)""")
+                self.conn.commit()
+            except sqlite3.Error as e:
+                print("Erro ao criar tabela pessoa {e}")  
+
+    def criar_tabela_marca(self):
+        if self.conn:
+            try:
+                cursor = self.conn.cursor()
+                cursor.execute("""CREATE TABLE IF NOT EXISTS vaiculo(placa TEXT PRIMARY KEY, cor TEXT NOT NULL, cpf_proprietario INTEGER, id_marca INTEGER, FOREING KEY(cpf_proprietario) REFERENCES pessoa(cpf), FOREIGN KEY(id_marca) REFERENCES marca(id))""")
+                self.conn.commit()
+            except sqlite3.Error as e:
+                print("Erro ao criar tabela vaiculo {e}")  
+
+    def criar_tabela_veiculo(self):
+        if self.conn:
+            try:
+                cursor = self.conn.cursor()
+                cursor.execute("""CREATE TABLE IF NOT EXISTS veiculo(placa TEXT PRIMARY KEY, cor TEXT NOT NULL, cpf_proprietario INTERGER, id_marca INTEGER, FOREIGN KEY(cpf_prprietario) REFERENCES pessoa(cpf), FOREIGN KEY(id_marca) REFERENCES marca(id)""")
+                self.conn.commit()
+            except sqlite3.Error as e:
+                print("Erro ao criar tabela {e}")   
