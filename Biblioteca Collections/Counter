@@ -1,0 +1,8 @@
+from collections import Counter
+
+palavras = "maça banana maça laranja banana". split()
+contagem = Counter(palavras)
+
+print(contagem)
+
+print(contagem.most_common(2))
