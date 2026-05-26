@@ -1,0 +1,3 @@
+with open("imagem.jpg, "rb) as file:
+    conteudo = file.read(100) #Le 100 bytes
+    print(conteudo)
