@@ -1,0 +1,22 @@
+import os 
+
+diretorio_atual = os.path.dirname(os.path.abspath(__file__))
+dados_binario_nome = os.path.join(diretorio_atual, "dados_puros.bin")
+dados_binarios = b"\x00\x02\x03\x04\x05"
+
+
+try:
+        with open(dados_binario_nome, "wb") as salva_binario:
+            salva_binario.write(dados_binarios)
+            print("Dados salvos")
+except Exception as e:
+        print(f"Ocorreu um erro ao salvar {e}")
+if os.path.exists(dados_binario_nome):
+    try:
+            with open(dados_binario_nome, "rb") as carrega_binario:
+                daddos_carregados = carrega_binario.read()
+                print(f"Dados carregados", daddos_carregados)
+    except Exception as e:
+        print(f"Ocorreu um erro ao carregar {e}")
+else:
+      print(f"O arquivo {dados_binario_nome} nao foi encontrado")
