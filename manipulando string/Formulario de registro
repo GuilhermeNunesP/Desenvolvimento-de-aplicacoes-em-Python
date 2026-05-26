@@ -1,0 +1,20 @@
+import re
+
+PADRAO_EMAIL = re.compile(r'^\w+([\.+]?\w+)*@\w+([\.+]?\w+)*(\.\w{2,3})+$')
+
+def validar_email(email):
+    return bool(PADRAO_EMAIL.match(email))
+
+if __name__ == "__main__":
+ exemplos_email = [
+    "usuario@email.com", # valido
+    "nome+@email.com",    # invalido
+    "a@b.co",             # valido, dominio certo
+    "@email.com",         # invalido, sem usuario                                                                            
+
+ ]
+for email in exemplos_email:
+   if validar_email(email):
+      print(f"{email} é valido")
+else:
+      print(f"{email} é invalido")
