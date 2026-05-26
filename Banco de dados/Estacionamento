@@ -78,3 +78,68 @@ def inserir_veiculo(self, veiculo: veiculo):
             self.conn.commit()
         except sqlite3.Error as e:
             print(f"Erro ao inserir veiculo: {e}")
+
+def atualizar_veiculo(self, veiculo: veiculo):
+    if self.conn:
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute("UPDATE veiculo SET cor=?, cpf_propriedade=?, id_marca=? WHERE placa=?",
+                           (veiculo.cor, veiculo.proprietario_cpf, veiculo.marca.id, veiculo.placa),)
+            self.conn.commit()
+        except sqlite3.Error as e:
+            print(f"Erro ao atualizar veiculo: {e}")
+
+def apagar_veiculo(self, veiculo: veiculo):
+    if self.conn:
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute("DELETE FROM veiculo WHERE placa=? ",
+                           (veiculo.placa,))
+            self.conn.commit()
+        except sqlite3.Error as e:
+            print(f"Erro ao apagar veiculo: {e}")
+
+def buscar_todas_pessoas(self):
+    pessoas = []
+    if self.conn:
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute("SELECT * FROM pessoa ")
+            for row in cursor.fetchall():
+                cpf, nome, nascimento , oculos = row
+                pessoas.append(pessoa(cpf, nome ,nascimento, oculos))
+        except sqlite3.Error as e:
+            print(f"Erro ao buscar pessoas: {e}")
+    return pessoas
+
+def buscar_todos_veiculos(self):
+    veiculos = []
+    if self.conn:
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute("SELECT * FROM veiculo ")
+            for row in cursor.fetchall():
+                placa, cor, cpf_proprietario, id_marca = row
+                prroprietrario = self.buscar_pessoa_por_cpd(cpf_proprietario)
+                marca = self.buscar_marca_por_id(id_marca)
+                veiculos.append(veiculo(placa, cor, prroprietrario, marca))
+        except sqlite3.Error as e:
+            print(f"Erro ao buscar veiculos: {e}")
+    return veiculos
+def buscar_pessoa_por_cpf(self, cpf:int):
+    if self.conn:
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute("SELECT * FROM pessoa WHERE cpf=? ", (cpf,))
+            for row in cursor.fetchone():
+                if row:
+                cpf, nome, nascimento , oculos = row
+                return pessoa(cpf, nome ,nascimento, oculos)
+        except sqlite3.Error as e:
+            print(f"Erro ao buscar pessoa por cpf: {e}")
+    return None
+
+def fechar_conexao(self):
+    if self.conn:
+        self.conn.close()
+        self.conn = None
