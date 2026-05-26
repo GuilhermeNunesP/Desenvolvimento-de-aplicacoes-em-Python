@@ -1,0 +1,10 @@
+texto = "Nossa aula manipulando string"
+
+novo_txt = texto.replace("manipulando", "trabalhando com")
+print(novo_txt)
+
+print(texto.starwith("Nossa"))
+print(texto.starwith("aula"))
+
+print(texto.endwith("aula"))
+print(texto.endwith("."))
