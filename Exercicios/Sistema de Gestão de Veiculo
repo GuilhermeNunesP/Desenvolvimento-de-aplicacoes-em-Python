@@ -1,0 +1,33 @@
+class veiculo:
+    def __init__(self, marca, modelo, ano):
+        self.marca = marca
+        self.modelo = modelo
+        self.ano = ano
+        self.combustivel = 100
+
+    def dirigir(self, distancia):
+        consumo = distancia / 10
+
+        if self.combustivel >= consumo:
+            self.combustivel -= consumo
+            print(f"Voce dirigiu {distancia}km combustivel resante: {self.combustivel:.2f}%")
+        else:
+            print(f"Combustivel insuficiente para percorrer {distancia}km")
+            if self.combustivel > 0:
+                distancia.possivel = self.combustivel * 10
+                print(f"Carro parou após percorrer {distancia.possivel}km tanquevazio" )
+    def abastecer(self):
+        self.combustivel = 100
+        print("Tanque abastecido")
+    def stats(self):
+        print("\n STATS DO VEICULO")
+        print(f"Veiculo {self.marca} {self.modelo} {self.ano}" )
+        print(f"tanque: {self.combustivel:.1f}%")
+        
+if __name__ == "__main__":
+   meu_carro = veiculo("Toyota", "Corolla", 2026)
+   meu_carro.stats()
+   meu_carro.dirigir(350)
+   meu_carro.stats()
+   meu_carro.abastecer()
+   meu_carro.stats()
