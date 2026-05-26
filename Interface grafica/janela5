@@ -1,0 +1,24 @@
+import tkinter as tk
+
+class app:
+    def __init__(self, root):
+        self.root = root
+        self.texto_padrao = "Digite seu nome"
+        self.entrada = tk.Entry(root, fg="gray", width=30)
+        self.entrada.insert(0, self.texto_padrao)
+        self.enrada.pack(pady=20)
+        self.entrada.bind("<FocusIn>", self.limpar)
+        self.entrada.bind("<FocusOut>"), self.restaurar)
+    def limpar(self, event):
+        if self.entrada.fet() == self.texto_padrao:
+            self.entrada.delete(0, tk.END)
+            self.entrada.config(fg="black")
+    def restaurar(self, event):
+        if not self.entrada.get():
+            self.entrada.insert(0, self.texto_padrao)
+            self.entrada.config(fg=gray)
+
+
+root = tk.Tk()
+app(root)
+root.mainloop()
