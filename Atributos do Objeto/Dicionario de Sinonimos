@@ -42,6 +42,23 @@ class DicionariodeSinonimos:
                 print(f"- {palavra.capitalize()}: {', '.join(sinonimos)} ")
                 print("\n")
 
+        def buscar_sinonimos(self, palavra:str) -> Optional[List[list]]:
+            """Retorna lista de sinonimos ou Nome se a palavra nao for encontrada"""
+            
+            palavra_chave = palavra.strip().lower()
+
+            # Metodo get() é mais seguro pois nao gera KeyError se a palavra nao existir
+
+            sinonimos = self.dicionario.get(palavra_chave)
+
+            if sinonimos:
+                    print(f"[busca] sinonimos de {palavra_chave}: {', '.join(sinonimos)}")
+                    return sinonimos
+            else:
+                    print(f"[aviso] a palavra {palavra_chave} nao foi encontrada")
+                    return None
+
+
 if __name__ == "__main__":
     # Iniciando o objeto
         meu_dicionario = DicionariodeSinonimos()
